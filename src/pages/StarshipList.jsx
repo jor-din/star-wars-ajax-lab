@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStarshipsList } from "../services/api-calls";
+import { getAllStarships } from "../services/api-calls";
 import { Link } from "react-router-dom";
 
 const StarshipsList = () => {
@@ -7,7 +7,7 @@ const StarshipsList = () => {
 
   useEffect(() => {
     const fetchStarshipList = async () => {
-      const starshipData = await getStarshipsList();
+      const starshipData = await getAllStarships();
       setStarships(starshipData.results);
     };
     fetchStarshipList();
@@ -18,7 +18,7 @@ const StarshipsList = () => {
         <h1>Starships List</h1>
         <div className="icon-container">
             {starships.map(starshipTitle => 
-                <Link key={starshipTitle.index} state={{ starshipTitle }} to='starship'>
+                <Link key={starshipTitle.index} state={{ starshipTitle }} to='/starship'>
                     <div className="class-div">
                         {starshipTitle.name}
                     </div>
